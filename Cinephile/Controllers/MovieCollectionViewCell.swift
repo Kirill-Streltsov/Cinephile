@@ -13,7 +13,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
 	@IBOutlet weak var poster: UIImageView!
 	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet weak var noMoviesLabel: UILabel!
-
+	@IBOutlet weak var deleteLabel: UILabel!
 	//если постером является дефолтная штука, то написать название фильма, так же поместить звёзды
 }
 

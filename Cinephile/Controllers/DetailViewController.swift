@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 class DetailViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-
+	
 	enum Mode {
 		case edit
 		case add
@@ -46,8 +46,8 @@ class DetailViewController: UIViewController, UITextViewDelegate, UITextFieldDel
 		trailingPosterConstraint.constant = self.view.frame.size.width / 2
 	}
 	
-    override func viewDidLoad() {
-        super.viewDidLoad()
+	override func viewDidLoad() {
+		super.viewDidLoad()
 		titleTextField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
 		titleNameIfEdit = titleName
 		titleTextField.delegate = self
@@ -65,9 +65,11 @@ class DetailViewController: UIViewController, UITextViewDelegate, UITextFieldDel
 			poster.image = image
 			saveButton.isEnabled = true
 		case .add:
+			opinionTextView.text = "Here you can write your thoughts about the movie..."
+			opinionTextView.textColor = UIColor.lightGray
 			break
 		}
-    }
+	}
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
@@ -142,9 +144,9 @@ class DetailViewController: UIViewController, UITextViewDelegate, UITextFieldDel
 		switch mode {
 		case .add:
 			//TODO: Add some code in this case
-//			if isAlreadyInCollection(title: titleName) {
-//
-//			}
+			//			if isAlreadyInCollection(title: titleName) {
+			//
+			//			}
 			let movie = NSManagedObject(entity: entity!, insertInto: context)
 			
 			movie.setValue(data, forKey: "poster")
@@ -211,7 +213,7 @@ class DetailViewController: UIViewController, UITextViewDelegate, UITextFieldDel
 			configuration.timeoutIntervalForRequest = 10.0 // seconds
 			return URLSession(configuration: .default)
 		}()
-
+		
 		// MARK: Movie request (all information)
 		session.dataTask(with: url) { (data, response, error) in
 			
@@ -271,7 +273,7 @@ class DetailViewController: UIViewController, UITextViewDelegate, UITextFieldDel
 											self.presentUnsuccessfulAlert()
 										}
 									}.resume()
-																	
+									
 								} catch {
 									self.presentUnsuccessfulAlert()
 								}
@@ -281,7 +283,7 @@ class DetailViewController: UIViewController, UITextViewDelegate, UITextFieldDel
 							}
 						}.resume()
 					}
-	
+					
 				} catch {
 					self.presentUnsuccessfulAlert()
 				}
@@ -289,10 +291,19 @@ class DetailViewController: UIViewController, UITextViewDelegate, UITextFieldDel
 		}.resume()
 	}
 	
-	func textViewDidBeginEditing(_ textView: UITextView) {
-		if textView == opinionTextView {
-			moveTextView(opinionTextView, moveDistance: -150, up: true)
+	func textViewDidEndEditing(_ textView: UITextView) {
+		if opinionTextView.text.isEmpty {
+			opinionTextView.text = "Here you can write your thoughts about the movie..."
+			opinionTextView.textColor = UIColor.lightGray
 		}
+	}
+	
+	func textViewDidBeginEditing(_ textView: UITextView) {
+		if opinionTextView.textColor == UIColor.lightGray {
+			opinionTextView.text = nil
+			opinionTextView.textColor = UIColor.black
+		}
+		moveTextView(opinionTextView, moveDistance: -150, up: true)
 	}
 	
 	func textFieldDidEndEditing(_ textField: UITextField) {
@@ -323,7 +334,7 @@ class DetailViewController: UIViewController, UITextViewDelegate, UITextFieldDel
 			return false
 		}
 		return true
- 	}
+	}
 	
 	@objc private func textFieldChanged() {
 		if titleTextField.text!.isEmpty {
@@ -414,7 +425,7 @@ class DetailViewController: UIViewController, UITextViewDelegate, UITextFieldDel
 	}
 	
 	func setupRatingStars() {
-
+		
 		for button in ratingButtons {
 			button.backgroundColor = .clear
 		}

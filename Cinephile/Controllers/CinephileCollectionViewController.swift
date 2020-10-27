@@ -13,18 +13,34 @@ private let reuseIdentifier = "Cell"
 
 class CinephileCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 	
+	
+	
+	@IBOutlet weak var edit: UIBarButtonItem!
+	@IBOutlet weak var add: UIBarButtonItem!
+	@IBOutlet weak var delete: UIBarButtonItem!
 	var collectionViewFlowLayout: UICollectionViewFlowLayout!
 	var indexOfCell = 0
+	var isEditingMode = false
 	private var movies: [Movie] = []
 
 	override func viewWillAppear(_ animated: Bool) {
 		collectionView.reloadData()
 		getMovies()
 	}
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		print(movies.count)
+	}
+
 	
     override func viewDidLoad() {
+		edit.title = "Edit"
+		delete.isEnabled = false
+		delete.tintColor = .clear
         super.viewDidLoad()
     }
+	
+	
 	
 
     /*
@@ -52,6 +68,7 @@ class CinephileCollectionViewController: UICollectionViewController, UICollectio
 	
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MovieCollectionViewCell
+		cell.deleteLabel.isHidden = true
 		let index = indexPath.row
 		
 		if movies.isEmpty {
@@ -94,7 +111,7 @@ class CinephileCollectionViewController: UICollectionViewController, UICollectio
 		if movies.isEmpty {
 			return additionalSafeAreaInsets
 		} else {
-			return UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+			return UIEdgeInsets(top: 20, left: 20, bottom: 70, right: 20)
 		}
 	}
 	
@@ -108,7 +125,14 @@ class CinephileCollectionViewController: UICollectionViewController, UICollectio
 	
 	override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		indexOfCell = indexPath.row
-		performSegue(withIdentifier: "editMovie", sender: self)
+		if !isEditingMode {
+			performSegue(withIdentifier: "editMovie", sender: self)
+		} else {
+			let cell = collectionView.cellForItem(at: indexPath) as! MovieCollectionViewCell
+			cell.tintColor = .darkGray
+			cell.deleteLabel.isHidden = false
+		}
+		
 	}
 	
 	override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
@@ -144,31 +168,22 @@ class CinephileCollectionViewController: UICollectionViewController, UICollectio
 			print("Error occured during navigation")
 		}
 	}
-
-	
-//	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//		switch segue.identifier {
-//		case "editMovie":
-//			if let indexPath = self.collectionView!.indexPathsForSelectedItems?.first
-//			{
-//				let index = indexPath.row
-//				let movieDetailVC = segue.destination as! DetailViewController
-//				movieDetailVC.titleTextField.text = movies[index].title
-//				movieDetailVC.yearLabel.text = "\(movies[index].year)"
-//				movieDetailVC.durationLabel.text = "\(movies[index].runningTimeInMinutes)"
-//				movieDetailVC.ratingLabel.text = "\(movies[index].rating)"
-//			}
-//		case "addMovie":
-//			let movieDetailVC = segue.destination as! DetailViewController
-//			movieDetailVC.titleTextField?.becomeFirstResponder()
-//		default:
-//			print("error occured")
-//		}
-//	}
-	
 	
 	@IBAction func editButtonPressed(_ sender: UIBarButtonItem) {
+		isEditingMode.toggle()
+		add.isEnabled.toggle()
+		delete.isEnabled.toggle()
+		setBarButtonColor(button: add)
+		setBarButtonColor(button: delete)
+		if isEditingMode {
+			edit.style = .done
+			edit.title = "Done"
+		} else {
+			edit.style = .plain
+			edit.title = "Edit"
+		}
 		
+		print("Edit pressed")
 	}
 	
 	func getMovies() {
@@ -182,6 +197,14 @@ class CinephileCollectionViewController: UICollectionViewController, UICollectio
 			movies = try context.fetch(fetchRequest)
 		} catch {
 			print(error)
+		}
+	}
+	
+	func setBarButtonColor(button: UIBarButtonItem) {
+		if button.isEnabled {
+			button.tintColor = .systemBlue
+		} else {
+			button.tintColor = .clear
 		}
 	}
 	

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YAl-er-ewu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YAl-er-ewu">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,7 +18,7 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="VIS-md-rs7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="tZa-eq-aIP">
                             <size key="itemSize" width="128" height="128"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -47,23 +48,43 @@
                                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ceJ-OW-hLb">
+                                            <rect key="frame" x="90" y="90" width="30" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="ceJ-OW-hLb" secondAttribute="height" multiplier="1:1" id="2JT-Zp-BV0"/>
+                                            </constraints>
+                                            <attributedString key="attributedText">
+                                                <fragment content="❌">
+                                                    <attributes>
+                                                        <font key="NSFont" metaFont="system" size="17"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="bZ3-an-9DT" secondAttribute="bottom" constant="2" id="1Y3-Xt-Mna"/>
                                         <constraint firstItem="m0Q-Pi-SxQ" firstAttribute="leading" secondItem="zDW-UC-aax" secondAttribute="leading" id="1nU-Jp-uPv"/>
                                         <constraint firstAttribute="trailing" secondItem="pzs-Ah-Fhf" secondAttribute="trailing" constant="16" id="3TZ-8e-Ys9"/>
+                                        <constraint firstItem="ceJ-OW-hLb" firstAttribute="top" secondItem="pzs-Ah-Fhf" secondAttribute="bottom" priority="999" constant="8" symbolic="YES" id="AYr-K1-Cpt"/>
+                                        <constraint firstItem="ceJ-OW-hLb" firstAttribute="leading" secondItem="zDW-UC-aax" secondAttribute="leading" priority="999" constant="90" id="CFc-1c-11j"/>
                                         <constraint firstItem="pzs-Ah-Fhf" firstAttribute="centerX" secondItem="zDW-UC-aax" secondAttribute="centerX" id="Cio-6Q-p5m"/>
                                         <constraint firstAttribute="trailing" secondItem="bZ3-an-9DT" secondAttribute="trailing" id="J2g-Rm-m9h"/>
                                         <constraint firstItem="m0Q-Pi-SxQ" firstAttribute="top" secondItem="zDW-UC-aax" secondAttribute="top" id="Kbk-kp-GDc"/>
+                                        <constraint firstAttribute="trailing" secondItem="ceJ-OW-hLb" secondAttribute="trailing" constant="8" id="Pbe-93-w3o"/>
                                         <constraint firstAttribute="trailing" secondItem="m0Q-Pi-SxQ" secondAttribute="trailing" id="Rgb-l3-5rk"/>
                                         <constraint firstAttribute="bottom" secondItem="m0Q-Pi-SxQ" secondAttribute="bottom" id="X2k-pY-Qqh"/>
                                         <constraint firstItem="pzs-Ah-Fhf" firstAttribute="centerY" secondItem="zDW-UC-aax" secondAttribute="centerY" id="hoJ-ah-mwb"/>
                                         <constraint firstItem="bZ3-an-9DT" firstAttribute="leading" secondItem="zDW-UC-aax" secondAttribute="leading" id="qRW-5Z-sy4"/>
                                         <constraint firstItem="pzs-Ah-Fhf" firstAttribute="leading" relation="lessThanOrEqual" secondItem="zDW-UC-aax" secondAttribute="leading" constant="16" id="r5V-YU-7Nn"/>
+                                        <constraint firstAttribute="bottom" secondItem="ceJ-OW-hLb" secondAttribute="bottom" constant="8" id="zes-Ze-VvK"/>
                                     </constraints>
                                 </collectionViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
+                                    <outlet property="deleteLabel" destination="ceJ-OW-hLb" id="Pe2-En-xz3"/>
                                     <outlet property="noMoviesLabel" destination="pzs-Ah-Fhf" id="Waj-wt-Rns"/>
                                     <outlet property="poster" destination="m0Q-Pi-SxQ" id="eYo-XI-r1t"/>
                                     <outlet property="titleLabel" destination="bZ3-an-9DT" id="bcT-hA-EaA"/>
@@ -76,24 +97,30 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Cinephile" id="qB3-Nk-Jsy">
-                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="LCK-DI-TNM">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="LCK-DI-TNM">
                             <connections>
-                                <action selector="editButtonPressed:" destination="AVo-ou-VBD" id="l7R-ct-qDn"/>
+                                <action selector="editButtonPressed:" destination="AVo-ou-VBD" id="Mjl-1k-u0O"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="0Xh-iJ-69E">
-                            <connections>
-                                <segue destination="R5D-hg-s5s" kind="show" identifier="addMovie" id="SvB-HN-sb4"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="0Xh-iJ-69E">
+                                <connections>
+                                    <segue destination="R5D-hg-s5s" kind="show" identifier="addMovie" id="SvB-HN-sb4"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="trash" id="WMY-1z-xaz"/>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="add" destination="0Xh-iJ-69E" id="yw2-ar-drZ"/>
+                        <outlet property="delete" destination="WMY-1z-xaz" id="sX9-ab-Q2g"/>
+                        <outlet property="edit" destination="LCK-DI-TNM" id="p6L-K1-by8"/>
                         <segue destination="R5D-hg-s5s" kind="show" identifier="editMovie" id="36G-qZ-pF0"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5mw-lK-NDC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3476.25" y="-14.788732394366198"/>
+            <point key="canvasLocation" x="3475.36231884058" y="-15.401785714285714"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="jiX-h0-4FE">
@@ -112,8 +139,8 @@
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ebt-JE-pL6">
                                 <rect key="frame" x="8" y="472.33333333333326" width="398" height="258.66666666666674"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                             </textView>
@@ -138,12 +165,12 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c22-ol-BL7">
-                                        <rect key="frame" x="37" y="223.33333333333329" width="70" height="66.666666666666657"/>
+                                        <rect key="frame" x="37.333333333333321" y="223.33333333333329" width="69.666666666666686" height="66.666666666666657"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f6l-M9-gmo">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f6l-M9-gmo">
                                         <rect key="frame" x="0.0" y="298" width="144" height="66.333333333333314"/>
                                         <state key="normal" title="See Reviews"/>
                                         <connections>
@@ -224,7 +251,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fHS-9W-Bev">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fHS-9W-Bev">
                                 <rect key="frame" x="0.0" y="87.999999999999972" width="254" height="376.33333333333326"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -235,7 +262,8 @@
                                 <rect key="frame" x="117" y="266" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="jnj-e8-HOb"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="fHS-9W-Bev" firstAttribute="width" secondItem="A8P-JU-1cU" secondAttribute="width" id="40N-aN-3Ns"/>
                             <constraint firstItem="jnj-e8-HOb" firstAttribute="bottom" secondItem="O2v-4O-slD" secondAttribute="bottom" id="4Kt-Pj-iim"/>
@@ -262,7 +290,6 @@
                             <constraint firstItem="KMm-2f-F94" firstAttribute="centerX" secondItem="A8P-JU-1cU" secondAttribute="centerX" id="ydg-ai-nwi"/>
                             <constraint firstItem="Ebt-JE-pL6" firstAttribute="top" secondItem="TFo-DO-edf" secondAttribute="bottom" constant="8" id="yjL-4v-s0b"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="jnj-e8-HOb"/>
                     </view>
                     <navigationItem key="navigationItem" id="tR8-ku-Cuq">
                         <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="save" id="y6h-Q1-vjd">
@@ -312,7 +339,7 @@
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Mp-Uz-6Rg">
                                 <rect key="frame" x="0.0" y="242" width="414" height="518"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <string key="text">Let's say you're reading these reviews and haven't watched GoT yet, but now that it's finished are considering the marathon. What's the consensus? In this case, the consensus is accurate, and that is:
 
 Seasons 1-6: outstanding. Deep world-building, intelligent dialogue, epic set-pieces worthy of Hollywood, expert acting, detailed plotting, genuine surprises, great soundtrack used sparingly. GoT is worth watching for these seasons, definitely.
@@ -330,17 +357,17 @@ So can I recommend a GoT marathon for newcomers? Yes, the first 6 seasons are wo
 * Twin Peaks (all 3 seasons, plus the movie)
 * Breaking Bad
 </string>
-                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="9mP-AF-cMH">
-                                <rect key="frame" x="187.66666666666666" y="768" width="39" height="37"/>
+                                <rect key="frame" x="146.33333333333334" y="768" width="121.33333333333334" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="k7i-uh-lyC"/>
                                 </constraints>
                                 <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="currentPageIndicatorTintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="currentPageIndicatorTintColor" systemColor="darkTextColor"/>
                             </pageControl>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="HJm-Cy-abc">
                                 <rect key="frame" x="16" y="104" width="60" height="60"/>
@@ -379,7 +406,8 @@ So can I recommend a GoT marathon for newcomers? Yes, the first 6 seasons are wo
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="p7M-6g-Ph9"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="1Mp-Uz-6Rg" firstAttribute="top" secondItem="C3d-ve-beY" secondAttribute="bottom" id="9T7-U4-cjT"/>
                             <constraint firstItem="p7M-6g-Ph9" firstAttribute="trailing" secondItem="o0s-PZ-mOO" secondAttribute="trailing" constant="8" id="ENi-bw-c3O"/>
@@ -400,7 +428,6 @@ So can I recommend a GoT marathon for newcomers? Yes, the first 6 seasons are wo
                             <constraint firstItem="p7M-6g-Ph9" firstAttribute="bottom" secondItem="9mP-AF-cMH" secondAttribute="bottom" constant="8" id="tmG-KS-bOg"/>
                             <constraint firstItem="C3d-ve-beY" firstAttribute="top" secondItem="o0s-PZ-mOO" secondAttribute="bottom" constant="-1" id="xaS-hH-jZc"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="p7M-6g-Ph9"/>
                     </view>
                     <navigationItem key="navigationItem" id="YF7-XJ-74p"/>
                     <connections>
@@ -463,5 +490,14 @@ So can I recommend a GoT marathon for newcomers? Yes, the first 6 seasons are wo
         <image name="emptyStar" width="341.33334350585938" height="341.33334350585938"/>
         <image name="movieCamera" width="406.66665649414062" height="576.66668701171875"/>
         <image name="user" width="333.66665649414062" height="367"/>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
